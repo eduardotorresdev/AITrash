@@ -1,0 +1,240 @@
+@import "./sass/Variables.scss";
+
+@mixin transition() {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+html,
+body,
+#root,
+.container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+.container {
+  background: url("./images/space.jpg") no-repeat center;
+  background-position: 100% 100%;
+}
+
+.space {
+  backdrop-filter: blur(10px) brightness(110%);
+  width: 550px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .toolbar {
+    background: rgba(0, 0, 0, 0.7);
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 0.5em 0;
+    box-sizing: border-box;
+    border-radius: 15px;
+
+    .start {
+      background: $color-red;
+      color: $color-white;
+      display: flex;
+      height: 45px;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      border: 0;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      font-size: 1.3rem;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+      @include transition();
+
+      &:hover {
+        box-shadow: 0 0 20px $color-red;
+      }
+
+      &.ativo {
+        cursor: auto;
+        background: $color-white;
+        @include transition();
+
+        &:hover {
+          box-shadow: 0 0 0 transparent;
+        }
+
+        > span {
+          color: $color-red;
+          position: relative;
+          top: -32px;
+          @include transition();
+        }
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      span {
+        display: flex;
+        height: 100%;
+        padding: 0.2rem 0;
+        position: relative;
+        top: 0px;
+        @include transition();
+      }
+    }
+
+    .slider-container {
+      width: 100%;
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+
+      h3 {
+        color: $color-white;
+        margin: 0 0.4rem;
+      }
+
+      .slider {
+        position: relative;
+        background: $color-grey-dark;
+        width: 150px;
+        height: 12px;
+        box-sizing: border-box;
+        border-radius: 10px;
+
+        .progress {
+          background-color: #4158d0;
+          background-image: linear-gradient(
+            43deg,
+            #4158d0 0%,
+            #c850c0 46%,
+            #ffcc70 100%
+          );
+
+          width: 50%;
+          height: 100%;
+          border-radius: 10px 0 0 10px;
+        }
+
+        .marker {
+          background: $color-white;
+          width: 18px;
+          height: 18px;
+          position: absolute;
+          top: -3px;
+          left: calc(50%);
+          margin-left: -9px;
+          border-radius: 100%;
+        }
+      }
+    }
+
+    h3 {
+      color: $color-white;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      .btn {
+        background: $color-white;
+        color: $color-dark;
+        border: 0;
+        padding: 0.3rem 0.5rem;
+        margin: 0 0.5rem;
+        font-weight: 700;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        cursor: pointer;
+        @include transition();
+
+        &:focus {
+          outline: none;
+        }
+
+        &.ativo {
+          background: $color-primary;
+          color: $color-white;
+          box-shadow: 0 0px 20px $color-primary;
+
+          @include transition();
+        }
+
+        &:hover {
+          background: $color-primary;
+          color: $color-white;
+
+          @include transition();
+        }
+
+        &.blue {
+          &.ativo {
+            background: $color-blue;
+            box-shadow: 0 0px 20px $color-blue;
+          }
+
+          &:hover {
+            background: $color-blue;
+            color: $color-white;
+          }
+        }
+
+        &.green {
+          &.ativo {
+            background: $color-green;
+            box-shadow: 0 0px 20px $color-green;
+          }
+
+          &:hover {
+            background: $color-green;
+            color: $color-white;
+          }
+        }
+
+        &.purple {
+          &.ativo {
+            background: $color-purple;
+            box-shadow: 0 0px 20px $color-purple;
+          }
+
+          &:hover {
+            background: $color-purple;
+            color: $color-white;
+          }
+        }
+      }
+    }
+  }
+
+  .world {
+    background: rgba(0, 0, 0, 0.7);
+    width: 500px;
+    height: 500px;
+    border-radius: 20px;
+  }
+}

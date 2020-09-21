@@ -2,19 +2,38 @@
   "name": "aitrash",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
+  "main": "./electron/main.js",
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "concurrently": "^5.3.0",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-spring": "^8.0.27",
+    "electron-is-dev": "^1.2.0",
+    "wait-on": "^5.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "ebuild": "react-scripts build && node_modules/.bin/build",
+    "packz": "electron-builder --dir",
+    "dist": "yarn build && electron-builder",
+    "dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "install-app-deps"
+  },
+  "build": {
+    "appId": "com.ia.aitrash",
+    "files": [
+      "./build/**/*",
+      "./electron/main.js",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +49,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^10.1.2",
+    "electron-builder": "^22.8.1",
+    "react-scripts": "3.4.3"
   }
 }
