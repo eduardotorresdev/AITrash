@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import World from "./components/World";
 import { animated, useSpring } from "react-spring";
 import "./Space.scss";
+import openSocket from "socket.io-client";
+
+const socket = openSocket("http://localhost:3001");
 
 function App() {
   const [teste, setTeste] = useState(false);
@@ -28,7 +31,7 @@ function App() {
       }}
       onMouseMove={({ clientX: x, clientY: y }) => set({ xy: calc(x, y) })}
     >
-      <div className="space" onClick={toggleTeste}>
+      <div className="space">
         <div className="toolbar">
           <div className="slider-container">
             <h3>Velocidade</h3>
