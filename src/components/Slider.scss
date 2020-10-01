@@ -1,0 +1,52 @@
+@import "../sass/Variables.scss";
+
+.slider-container {
+  width: 100%;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+
+  h3 {
+    color: $color-white;
+    margin: 0 0.4rem;
+  }
+
+  .slider {
+    position: relative;
+    background: $color-grey-dark;
+    width: 150px;
+    height: 12px;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-left: 1rem;
+
+    .progress {
+      background-color: #4158d0;
+      background-image: linear-gradient(
+        43deg,
+        #4158d0 0%,
+        #c850c0 46%,
+        #ffcc70 100%
+      );
+
+      width: 0%;
+      height: 100%;
+      border-radius: 10px 0 0 10px;
+    }
+
+    .marker {
+      background: $color-white;
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      top: -3px;
+      left: 0%;
+      margin-left: -9px;
+      border-radius: 100%;
+    }
+  }
+}
