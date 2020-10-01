@@ -33,7 +33,7 @@
     "appId": "com.ia.aitrash",
     "files": [
       "./build/**/*",
-      "./electron/main.js",
+      "./electron/**/*",
       "package.json"
     ],
     "directories": {
@@ -57,7 +57,6 @@
   },
   "devDependencies": {
     "electron": "^10.1.2",
-    "electron-builder": "^22.8.1",
-    "react-scripts": "3.4.3"
+    "electron-builder": "^22.8.1"
   }
 }

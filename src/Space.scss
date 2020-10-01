@@ -47,6 +47,8 @@ body,
   height: 22px;
   position: absolute;
   top: 0px;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
 
   .buttons {
     background: $color-white;
@@ -121,12 +123,16 @@ body,
       cursor: pointer;
       @include transition();
 
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+
       &:hover {
         box-shadow: 0 0 20px $color-red;
       }
 
       &.ativo {
-        cursor: auto;
         background: $color-white;
         @include transition();
 
@@ -234,34 +240,5 @@ body,
         }
       }
     }
-  }
-
-  .world {
-    display: flex;
-    flex: 1 0 auto;
-    background: rgba(0, 0, 0, 0.7);
-    width: 640px;
-    height: 640px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px) brightness(80%);
-    position: relative;
-  }
-
-  .lixeira {
-    background: url("./images/lixeira.png") no-repeat center;
-    background-size: contain;
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    top: calc(32px * 11);
-  }
-  .lixeira2 {
-    background: url("./images/lixeira.png") no-repeat center;
-    background-size: contain;
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    top: calc(32px * 11);
-    left: calc(32px * 19);
   }
 }

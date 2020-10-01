@@ -34,7 +34,7 @@ const Slider = () => {
       speed.current = speedValue;
     }
   });
-  console.log(socket);
+
   return (
     <div className="slider-container">
       <h3>Velocidade</h3>

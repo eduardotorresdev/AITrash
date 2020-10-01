@@ -1,7 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
-require('./server/index');
+require('./index');
 
 let mainWindow;
 
@@ -11,10 +11,12 @@ function createWindow() {
         height: 840,
         show: true,
         frame: false,
-        resizable: false
+        resizable: false,
+        worldSafeExecuteJavaScript: true,
+        nodeIntegration: true,
     });
     const startURL = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`;
-
+    mainWindow.loadURL('http://localhost:3001/');
     mainWindow.webContents.openDevTools()
 
     mainWindow.loadURL(startURL);

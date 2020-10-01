@@ -1,0 +1,77 @@
+.world {
+  display: flex;
+  flex: 1 0 auto;
+  background: rgba(0, 0, 0, 0.7);
+  width: 640px;
+  height: 640px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px) brightness(80%);
+  position: relative;
+}
+
+.cleaner {
+  background: url("../images/cleaner.png") no-repeat center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  z-index: 2;
+  transition: all 0.1s ease;
+}
+
+.purger {
+  background: url("../images/purger.png") no-repeat center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: calc(32px * 19);
+  z-index: 2;
+  transition: all 0.1s ease;
+}
+
+.lixeira {
+  background: url("../images/lixeira.png") no-repeat center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: calc(32px * 11);
+  z-index: 1;
+}
+
+.incinerator {
+  background: url("../images/incinerator.png") no-repeat center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: calc(32px * 19);
+  z-index: 1;
+}
+
+.recycle {
+  background: url("../images/recycle.png") no-repeat center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: calc(32px * 19);
+  left: calc(32px * 19);
+  z-index: 1;
+}
+
+.trashRecyclable,
+.trashOrganic {
+  background: url("../images/satellite.png") no-repeat center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  z-index: 1;
+}
+
+.trashOrganic {
+  background: url("../images/organic.png") no-repeat center;
+  background-size: 68%;
+}
