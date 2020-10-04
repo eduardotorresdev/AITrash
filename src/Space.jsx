@@ -108,8 +108,8 @@ function App() {
           <div className="btn-group">
             <h3>Arquitetura:</h3>
             <button
-              className={`btn${arquitetura === "simplex" ? " ativo" : ""}`}
-              onClick={() => alterarArquitetura("simplex")}
+              className={`btn${arquitetura === "simple" ? " ativo" : ""}`}
+              onClick={() => alterarArquitetura("simple")}
             >
               Simples
             </button>

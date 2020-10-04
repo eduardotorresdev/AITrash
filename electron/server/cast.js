@@ -1,41 +1,54 @@
 const { delay } = require('./helpers');
 
 module.exports = (World) => {
-    const onEdge = (x, y) => {
+    const onEdgeX = (x, y) => {
         if (x <= 0) {
             return 'overleft';
         } else if (x >= 19) {
             return 'overright';
-        } else if (y <= 0) {
+        }
+    }
+
+    const onEdgeY = (x, y) => {
+        if (y <= 0) {
             return 'overup';
         } else if (y >= 19) {
             return 'overdown';
         }
-        return 'Inside';
     }
     const move = (direction, robot) => {
         switch (direction) {
             case "left":
-                if (onEdge(robot.x, robot.y) === 'overleft') return 'overleft';
+                if (onEdgeX(robot.x, robot.y) === 'overleft') return 'overleft';
                 robot.x--;
                 break;
             case "right":
-                if (onEdge(robot.x, robot.y) === 'overright') return 'overright';
+                if (onEdgeX(robot.x, robot.y) === 'overright') return 'overright';
                 robot.x++;
                 break;
             case "up":
-                if (onEdge(robot.x, robot.y) === 'overup') return 'overup';
+                if (onEdgeY(robot.x, robot.y) === 'overup') return 'overup';
                 robot.y--;
                 break;
             case "down":
-                if (onEdge(robot.x, robot.y) === 'overdown') return 'overdown';
+                if (onEdgeY(robot.x, robot.y) === 'overdown') return 'overdown';
                 robot.y++;
                 break;
             default:
                 break;
         }
     }
-
+    const moveToPos = async (pos, robot) => {
+        while (robot.x !== pos.x || robot.y !== pos.y) {
+            if (robot.x !== pos.x) {
+                robot.x > pos.x ? robot.move('left', robot) : robot.move('right', robot)
+            } else {
+                robot.y > pos.y ? robot.move('up', robot) : robot.move('down', robot)
+            }
+            World.update();
+            await delay(1000, World.speed)
+        }
+    }
     const Cleaner = {
         x: 0,
         y: 0,
@@ -50,8 +63,8 @@ module.exports = (World) => {
             let trashFounded = [];
             if (Cleaner.y - 1 >= 0 && World.trashes[Cleaner.y - 1][Cleaner.x] !== null) {
                 trashFounded.push({
-                    x: Cleaner.y - 1,
-                    y: Cleaner.y,
+                    x: Cleaner.x,
+                    y: Cleaner.y - 1,
                     type: World.trashes[Cleaner.y - 1][Cleaner.x]
                 })
             }
@@ -91,7 +104,8 @@ module.exports = (World) => {
             }
 
             return "right";
-        }
+        },
+        moveToPos,
     };
 
     const trashCanLeft = [];
@@ -122,7 +136,6 @@ module.exports = (World) => {
     })();
 
     const executeGet = async (side) => {
-        console.log('XEUIFASOFASDF');
         if (side === 'left') {
             while (Purger.x !== 0 || Purger.y !== 11) {
                 if (Purger.x !== 0) {

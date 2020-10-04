@@ -3,9 +3,7 @@ module.exports = function (io) {
     const Recycle = "R";
     const Organic = "O";
     const World = {
-        trashes: Array.from({
-            length: 20
-        }, () => Array(20).fill(null)),
+        trashes: [],
         quantity: 0,
         speed: 1,
         architecture: null
@@ -29,6 +27,10 @@ module.exports = function (io) {
     }
 
     const createWorld = () => {
+        World.trashes = Array.from({
+            length: 20
+        }, () => Array(20).fill(null));
+
         const exceptI = [0, 19, 0, 19, 0, 19];
         const exceptJ = [0, 0, 11, 11, 19, 19];
         while (World.quantity < 40) {
@@ -50,12 +52,15 @@ module.exports = function (io) {
     })
 
     io.on('newArchitecture', (value) => {
-        console.log(value)
         switch (value) {
-            case 'simplex':
-                World.architecture = require('./simplexAgent');
+            case 'simple':
+                World.architecture = require('./simpleAgent');
+                break;
+            case 'models':
+                World.architecture = require('./modelsAgent');
                 break;
             default:
+                World.architecture = null;
         }
     })
 
