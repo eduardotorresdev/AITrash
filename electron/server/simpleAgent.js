@@ -85,4 +85,5 @@ module.exports = async (World) => {
         World.update();
         await delay(1000, World.speed);
     }
+    World.finalizar();
 }

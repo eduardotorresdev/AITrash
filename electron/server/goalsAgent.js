@@ -1,19 +1,28 @@
 const { Cleaner, trashCanLeft, trashCanRight, Purger } = require('./cast');
 const { delay } = require('./helpers');
 
+function distance(p, q) {
+    var dx = Math.abs(p.x - q.x);
+    var dy = Math.abs(p.y - q.y);
+    var dist = Math.sqrt(dx * dx + dy * dy);
+    return dist;
+}
+
 module.exports = async (World) => {
     let side = 'right';
     let perceptions = [];
+    let lastPos = { x: 11, y: 11 };
     while (World.quantity > 0 || Cleaner.hasTrash !== null) {
         if (Cleaner.hasTrash === null) {
             if (Cleaner.trashOnField()) {
+                lastPos = { x: Cleaner.x, y: Cleaner.y }
                 let trashes = Cleaner.trashOnSide();
                 if (trashes.length > 0) {
                     trashes.forEach((value) => {
                         if (!perceptions.find(p => p.x === value.x && p.y === value.y)) {
                             perceptions.push(value);
                         }
-                    })
+                    });
                 }
                 Cleaner.hasTrash = World.trashes[Cleaner.y][Cleaner.x]
                 World.trashes[Cleaner.y][Cleaner.x] = null;
@@ -86,11 +95,21 @@ module.exports = async (World) => {
                         Cleaner.hasTrash = null;
                         Purger.getTrash('left');
                         if (perceptions.length > 0) {
+                            perceptions.sort((a, b) => {
+                                if (distance(Cleaner, a) > distance(Cleaner, b)) {
+                                    return 1;
+                                }
+                                if (distance(Cleaner, a) < distance(Cleaner, b)) {
+                                    return -1;
+                                }
+                                return 0;
+                            })
                             let aux = perceptions.shift()
                             await Cleaner.moveToPos(aux, Cleaner);
                             continue;
                         }
-                        await Cleaner.moveToPos({ x: 11, y: 11 }, Cleaner);
+
+                        await Cleaner.moveToPos(lastPos, Cleaner);
                     }
                 } else {
                     if (Cleaner.x !== 19) {
@@ -100,11 +119,21 @@ module.exports = async (World) => {
                         Cleaner.hasTrash = null;
                         Purger.getTrash('right');
                         if (perceptions.length > 0) {
+                            perceptions.sort((a, b) => {
+                                if (distance(Cleaner, a) > distance(Cleaner, b)) {
+                                    return 1;
+                                }
+                                if (distance(Cleaner, a) < distance(Cleaner, b)) {
+                                    return -1;
+                                }
+                                return 0;
+                            })
+
                             let aux = perceptions.shift()
                             await Cleaner.moveToPos(aux, Cleaner);
                             continue;
                         }
-                        await Cleaner.moveToPos({ x: 11, y: 11 }, Cleaner);
+                        await Cleaner.moveToPos(lastPos, Cleaner);
                     }
                 }
                 side = 'right';

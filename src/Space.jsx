@@ -40,6 +40,9 @@ function App() {
     socket.on("cancelado", () => {
       cancelado.current = true;
     });
+    socket.on("finalizado", () => {
+      cancelado.current = true;
+    });
   }, []);
 
   useEffect(() => {
@@ -48,6 +51,13 @@ function App() {
       return;
     }
     setDisabled(false);
+    setIniciou((iniciou) => {
+      if (iniciou) {
+        setTimer({ min: 0, sec: 0 });
+        return false;
+      }
+      return iniciou;
+    });
   }, [arquitetura]);
 
   function pad(num, size) {

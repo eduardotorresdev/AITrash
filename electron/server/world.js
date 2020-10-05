@@ -21,6 +21,10 @@ module.exports = function (io) {
         io.emit('purgerChanged', JSON.stringify(Robots.Purger));
     }
 
+    World.finalizar = () => {
+        io.emit('finalizado');
+    }
+
     const trashGenerator = () => {
         const trashType = [Recycle, Organic];
         return trashType.sort(() => Math.random() - 0.5)[0];
@@ -34,12 +38,12 @@ module.exports = function (io) {
         const exceptI = [0, 19, 0, 19, 0, 19];
         const exceptJ = [0, 0, 11, 11, 19, 19];
         while (World.quantity < 40) {
-            const i = Math.floor(Math.sqrt(Math.random() * 400));
-            const j = Math.floor(Math.sqrt(Math.random() * 400));
-            if (World.trashes[i][j] !== null || exceptI.indexOf(i) + exceptJ.indexOf(j) >= 0) {
+            const x = Math.floor(Math.sqrt(Math.random() * 400));
+            const y = Math.floor(Math.sqrt(Math.random() * 400));
+            if (World.trashes[y][x] !== null || exceptI.indexOf(y) + exceptJ.indexOf(x) >= 0) {
                 continue;
             }
-            World.trashes[i][j] = trashGenerator();
+            World.trashes[y][x] = trashGenerator();
             World.quantity++;
         }
         World.update();
@@ -59,12 +63,18 @@ module.exports = function (io) {
             case 'models':
                 World.architecture = require('./modelsAgent');
                 break;
+            case 'goals':
+                World.architecture = require('./goalsAgent');
+                break;
             default:
                 World.architecture = null;
         }
     })
 
     io.on('start', () => {
+        if (World.quantity === 0) {
+            createWorld();
+        }
         World.architecture(World);
     })
 }
