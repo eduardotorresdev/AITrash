@@ -66,6 +66,9 @@ module.exports = function (io) {
             case 'goals':
                 World.architecture = require('./goalsAgent');
                 break;
+            case 'utility':
+                World.architecture = require('./utilityAgent');
+                break;
             default:
                 World.architecture = null;
         }

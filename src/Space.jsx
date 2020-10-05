@@ -4,7 +4,7 @@ import Slider from "./components/Slider";
 import { animated, useSpring } from "react-spring";
 import socket from "./socket";
 import "./Space.scss";
-
+const electron = window.require("electron");
 function App() {
   const [arquitetura, setArquitetura] = useState(null);
   const [iniciou, setIniciou] = useState(false);
@@ -109,8 +109,20 @@ function App() {
       onMouseMove={({ clientX: x, clientY: y }) => set({ xy: calc(x, y) })}
     >
       <div className="title-bar">
-        <div className="buttons"></div>
-        <div className="buttons"></div>
+        <div
+          className="buttons"
+          onClick={() => {
+            let window = electron.remote.getCurrentWindow();
+            window.close();
+          }}
+        ></div>
+        <div
+          className="buttons"
+          onClick={() => {
+            let window = electron.remote.getCurrentWindow();
+            window.minimize();
+          }}
+        ></div>
       </div>
       <div className="space">
         <div className="toolbar">

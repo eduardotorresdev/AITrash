@@ -13,7 +13,10 @@ function createWindow() {
         frame: false,
         resizable: false,
         worldSafeExecuteJavaScript: true,
-        nodeIntegration: true,
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true
+        },
     });
     const startURL = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`;
     mainWindow.loadURL('http://localhost:3001/');
