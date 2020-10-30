@@ -1,68 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ColetoresDeLixoIA
 
-## Available Scripts
+Atividade prática da disciplina Inteligência Artificial do curso de Ciência da computação 2020.1 da Universidade Federal do Maranhão.
+Apresentação
 
-In the project directory, you can run:
+Desenvolvimento de dois robôs inteligentes, sendo eles R1 e R2, que possuem o objetivo em comum de coletar e transportar lixo em um mundo composto por uma tabela 20x20 unidades, duas lixeiras(X e Y), um incinerador e uma recicladora.
+Objetivo
 
-### `yarn start`
+Medir o tempo de execução de cada uma das arquiteturas (reativo simples, baseada em modelos, objetivos e utilidade) para avaliar qual teve o melhor desempenho.
+Especificações
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    O agente R1, vai ser responsável pela coleta de lixo e o depósito do mesmo em uma das lixeiras, fazendo essa mesma atividade até que o mundo esteja completamente limpo.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+    Já o agente R2, terá papel de verificar as lixeiras X e Y, e caso haja lixo, será responsável por transportá-lo até o incinerador ou para a recicladora, se o lixo for orgânico ou reciclável, respectivamente.
 
-### `yarn test`
+    Quarenta (40) pedaços de lixo são colocados aleatoriamente no ambiente.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    Os robôs têm preferência por coletar lixo reciclável, pois demoram mais para se deteriorar no ambiente.
 
-### `yarn build`
+    Cada robô pode carregar apenas um lixo por vez.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    Os robôs podem executar as seguintes ações: Andar para esquerda, andar para direita, andar para cima, andar para baixo, pegar o lixo, soltar o lixo, NoOp.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+    Os robôs têm as seguintes percepções: local onde estão, conteúdo do local, conteúdo dos 4 locais vizinhos ao local onde está, local das lixeiras, local do incinerador e da recicladora.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    O ambiente deve ter as dimensões 20x20, o robô R1 inicia na posição 1x1, o robô R2 inicia na posição 1x20. As lixeiras estão em 12x1 e 12x20, o incinerador está em 20x1 e a recicladora em 20x20.
 
-### `yarn eject`
+    Os agentes devem ser implementados utilizando as arquiteturas: reativo simples, baseada em modelos, objetivos e utilidade.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Equipe
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+    Eduardo José Torres Rocha
+    Cícero Joe Rafael Lima de Oliveira
